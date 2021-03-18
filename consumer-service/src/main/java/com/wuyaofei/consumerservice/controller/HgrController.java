@@ -18,7 +18,6 @@ public class HgrController {
     @Autowired
     private HgrFeign hgrFeign;
 
-    @LoadBalanced
     @GetMapping("/findPage")
     public PageResult findPage(QueryPageBean queryPageBean) {
         log.info("[客房信息-分页查询]data:{}", queryPageBean);
