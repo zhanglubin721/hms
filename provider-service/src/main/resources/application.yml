@@ -1,0 +1,21 @@
+# 配置应用基本信息 和 DB
+server:
+  port: 9091
+spring:
+  application:
+    name: provider-service
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    password: root
+    url: jdbc:mysql://127.0.0.1:3306/hms?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+    username: root
+# 配置eurekaserver
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:8761/eureka
+mybatis:
+  # mapper.xml配置文件路径
+  mapper-locations: classpath:mapper/*Mapper.xml
+  # 扫描实体
+  #type-aliases-package: com.itheima.dao

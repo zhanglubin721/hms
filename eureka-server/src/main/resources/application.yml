@@ -1,0 +1,12 @@
+# 端口
+server:
+  port: 8761
+spring:
+  application:
+    name: eureka-server # 应用名称，会在Eureka中作为服务的id标识（serviceId）
+eureka:
+  client:
+    fetch-registry: false  #是否抓取注册列表
+    register-with-eureka: false  #是否注册服务中心Eureka
+    service-url: # EurekaServer的地址，现在是自己的地址，如果是集群，需要写其它Server的地址。
+      defaultZone: http://127.0.0.1:8761/eureka

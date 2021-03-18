@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wuyaofei.providerservice.mapper.HgrMapper">
+    <!--根据id查用户名-->
+    <select id="findPage" resultType="com.wuyaofei.providerservice.pojo.Hgr" parameterType="string">
+        select * from hgr
+        <if test="queryString != null and queryString.length > 0">
+            where rname like concat('%',#{queryString},'%') or rid like concat('%',#{queryString},'%')
+        </if>
+    </select>
+    <delete id="deleteByRid" parameterType="long">
+        delete from hgr
+        where rid = #{rid}
+    </delete>
+    <insert id="insertHgr" parameterType="com.wuyaofei.providerservice.pojo.Hgr">
+        insert into hgr (rid, rname, type)
+        values (#{rid}, #{rname}, #{type})
+    </insert>
+    <update id="edit" parameterType="com.wuyaofei.providerservice.pojo.Hgr">
+        update hgr set
+        rname = #{rname},
+        type = #{type}
+        where rid = #{rid}
+    </update>
+    <select id="findByRid" resultType="com.wuyaofei.providerservice.pojo.Hgr" parameterType="long">
+        select * from hgr
+        where rid = #{rid}
+    </select>
+    <insert id="insertOrder" parameterType="com.wuyaofei.providerservice.pojo.Order">
+        insert into `order` (id, rid, rname, type, uid, uname, useTime, stareTime, endTime, state)
+        values (#{id}, #{rid}, #{rname}, #{type}, #{uid}, #{uname}, #{useTime}, #{stareTime}, #{endTime}, 1)
+    </insert>
+    <select id="chooseFindPage" resultType="com.wuyaofei.providerservice.pojo.Hgr">
+        select * from hgr where
+        <if test="queryString != null and queryString.length > 0">
+            rname like concat('%',#{queryString},'%') or rid like concat('%',#{queryString},'%')
+            and
+        </if>
+        rid not in (
+        select rid from `order` where SUBSTRING(id FROM 4 FOR 7) = #{time}
+        )
+    </select>
+
+</mapper>

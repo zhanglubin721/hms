@@ -1,0 +1,9 @@
+{
+  "properties": [
+    {
+      "name": "consumer-service.ribbon.ConnectTimeout",
+      "type": "java.lang.String",
+      "description": "Description for consumer-service.ribbon.ConnectTimeout."
+    }
+  ]
+}

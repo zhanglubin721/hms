@@ -1,0 +1,14 @@
+# 配置应用基本信息
+server:
+  port: 8080
+spring:
+  application:
+    name: consumer-service
+# 配置eurekaserver
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:8761/eureka
+feign:
+  httpclient:
+    connection-timeout: 10000
