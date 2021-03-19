@@ -1,0 +1,10 @@
+# SpringCloud
+
+### Eureka
+单独的Eureka项目，提供注册中心的功能
+与zookeeper差别最大的地方在于心跳机制、续约-清除机制
+
+### Feign
+消费者通过SpringCloud Feign的固定用法来使用Feign进行远程调用，因为消费者配置了Eureka服务的ip和端口，所以在调用服务前会访问Eureka来获取目标服务的ip和端口，并在这个过程中自动实现负载均衡（规则默认为轮询）
+Feign与Dubbo的调用方式最大的区别在于，Dubbo暴露给用户的是接口，通过接口隐式的找到目标服务。而Feign需要在Feign接口中写明目标服务Controller接口的路径。Dubbo是调用到目标服务的接口实现类，而Feign是访问目标服务的Controller。这两者存在理念上的根本差异。
+
